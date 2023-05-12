@@ -27,9 +27,10 @@
         <li><a href=""></a></li>
         {% if request.user.is_authenticated %}
         <li><a class="get-a-quote" href="">Create order</a></li>
+        <li><a href="{% url 'item:logout' %}">Log out</a></li>
         {% else %}
-        <li><a href="">Log In</a></li>
-        <li><a href="">Sign Up</a></li>
+        <li><a href="{% url 'item:login' %}">Log In</a></li>
+        <li><a href="{% url 'item:signup' %}">Sign Up</a></li>
         {% endif %}
       </ul>
     </nav>

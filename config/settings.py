@@ -27,7 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'deliever',
-    'item'
+    'item',
+    "crispy_forms",
+    "crispy_bootstrap4"
 ]
 
 MIDDLEWARE = [
@@ -101,9 +103,9 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-LOGIN_REDIRECT_URL = "items/"
-LOGOUT_REDIRECT_URL = "/"
-
+LOGIN_REDIRECT_URL = "item:home"
+LOGOUT_REDIRECT_URL = "item:login"
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -111,7 +113,7 @@ LOGOUT_REDIRECT_URL = "/"
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static/"]
 MEDIA_URL = "/uploads/"
-MEDIA_ROOT = [BASE_DIR / 'uploads/']
+MEDIA_ROOT = BASE_DIR / 'uploads/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
