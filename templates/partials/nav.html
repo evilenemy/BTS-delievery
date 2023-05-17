@@ -9,7 +9,7 @@
     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     <nav id="navbar" class="navbar">
       <ul>
-        {% if request.path == "/" %}
+        {% if request.path == "/home/" %}
         <li><a href="{% url 'item:home' %}" class="active">Home</a></li>
         {% else %}
         <li><a href="{% url 'item:home' %}">Home</a></li>
@@ -26,7 +26,7 @@
         {% endif %}
         <li><a href=""></a></li>
         {% if request.user.is_authenticated %}
-        <li><a class="get-a-quote" href="">Create order</a></li>
+        <li><a class="get-a-quote" href="{% url 'item:create_order' %}">Create order</a></li>
         <li><a href="{% url 'item:logout' %}">Log out</a></li>
         {% else %}
         <li><a href="{% url 'item:login' %}">Log In</a></li>

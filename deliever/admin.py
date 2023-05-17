@@ -4,7 +4,9 @@ from .models import Category, Deliever
 @admin.register(Category)
 class CategoryModelAdmin(admin.ModelAdmin):
   list_display = ("id", "name")
+  ordering = ('id',)
 
 @admin.register(Deliever)
 class DeliverModelAdmin(admin.ModelAdmin):
   list_display = ("id", "name", "category", "work_time", "activity")
+  ordering = ('id',)
