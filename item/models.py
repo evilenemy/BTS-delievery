@@ -13,12 +13,12 @@ class Address(models.Model):
     return self.name
 
 class Item(models.Model):
-  title = models.CharField(max_length=255)
+  title = models.CharField(max_length=255, null=True)
   user = models.ForeignKey(User, on_delete=models.PROTECT)
   deliever = models.ForeignKey(Deliever, on_delete=models.PROTECT)
-  image = models.ImageField(upload_to="item/")
+  image = models.ImageField(upload_to="item/", null=True, blank=True)
   to_address = models.ForeignKey(Address, on_delete=models.PROTECT, related_name="to_address")
-  bulk = models.PositiveIntegerField()
+  bulk = models.IntegerField()
   price = models.IntegerField()
   status = models.BooleanField(default=False)
   category = models.ForeignKey(Category, on_delete=models.PROTECT)
