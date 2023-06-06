@@ -2,7 +2,7 @@
 
 ### Instalization
 
-`pip install requirements.txt` for install libraries
+`pip install -r requirements.txt` for install libraries
 
 `python manage.py runserver` for run project
 
