@@ -16,7 +16,7 @@ class Item(models.Model):
   title = models.CharField(max_length=255, null=True)
   user = models.ForeignKey(User, on_delete=models.PROTECT)
   deliever = models.ForeignKey(Deliever, on_delete=models.PROTECT)
-  image = models.ImageField(upload_to="item/", null=True, blank=True)
+  image = models.ImageField(upload_to="item/", null=True, blank=True, default="item/default.png")
   to_address = models.ForeignKey(Address, on_delete=models.PROTECT, related_name="to_address")
   bulk = models.IntegerField()
   price = models.IntegerField()

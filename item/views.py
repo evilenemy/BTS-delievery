@@ -27,10 +27,6 @@ def contact(request):
       print(e)
   return render(request, "item/contact.html") 
 
-def random_choise_deliver(array):
-  id = random.randint(1, len(array))
-  return id
-
 @login_required(login_url="/")
 def create_order(request):
   try:
@@ -43,15 +39,25 @@ def create_order(request):
       image = request.FILES.get('image')
       address_ = request.POST.get('address')
       address = Address.objects.get(id=address_)
-      delivers = Deliever.objects.filter(category=category_)
+      delivers = Deliever.objects.filter(activity=True, category=category_)
+      deliver_ids = []
+      for deliver in delivers:
+        deliver_ids.append(deliver.id)
       category = Category.objects.get(id=category_)
-      if title == "" or address_ == "" or category_ == "" or bulk == "":
-        return render(request, "item/create_order.html", {'categories': categories, "address": addresses, "delivers": delivers})
       if len(delivers) > 0:
-        deliver = Deliever.objects.get(id=random_choise_deliver(delivers))
-        item = Item.objects.create(title=title, image=image, to_address=address, bulk=bulk, category=category, status=False, user=request.user, deliever=deliver, price=address.price + (int(bulk) * 0.5))
-        if item:
-          return redirect("item:home")
+        deliver = Deliever.objects.get(id=random.choice(deliver_ids))
+        if image:
+          item = Item.objects.create(title=title, image=image, to_address=address, bulk=bulk, category=category, status=False, user=request.user, deliever=deliver, price=address.price + (int(bulk) * 0.5))
+          if item:
+            deliver.activity = False
+            deliver.save()
+            return redirect("item:orders")
+        else:
+          item = Item.objects.create(title=title, to_address=address, bulk=bulk, category=category, status=False, user=request.user, deliever=deliver, price=address.price + (int(bulk) * 0.5))
+          if item:
+            deliver.activity = False
+            deliver.save()
+            return redirect("item:orders")
       else:
         return render(request, "item/create_order.html", {"message": "Delivers not found!"})
 
@@ -77,5 +83,5 @@ def signup(request):
   return redirect("item:login")
 
 def orders(request):
-  orders = Item.objects.filter(user=request.user)
+  orders = Item.objects.filter(user=request.user).order_by("status")
   return render(request, "item/orders.html", {"orders": orders})

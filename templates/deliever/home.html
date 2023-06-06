@@ -1,9 +1,0 @@
-{% extends 'partials/base.html' %}
-{% block title %}Login Delievery{% endblock %}
-{% block content %}
-{% if request.user.is_athenticated %}
-<h1>Successfully authorizated!</h1>
-{% else %}
-<h1>You aren't authorizated</h1>
-{% endif %}
-{% endblock %}

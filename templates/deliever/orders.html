@@ -12,7 +12,6 @@
             <p>Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut
               a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum
               dolorem.</p>
-            <a class="btn btn-primary" href="{% url 'deliver:orders' %}">Switch to deliver mode</a>
           </div>
         </div>
       </div>
@@ -76,8 +75,8 @@
           <div class="w-50 d-flex flex-column justify-content-center">
             <h6 class="fw-bold">Bulk: <span class="fw-normal">{{order.bulk}} kg</span></h6>
             <h6 class="fw-bold">Price: <span class="fw-normal">${{order.price}}</span></h6>
-            <a class="btn btn-primary" href="{% url 'deliver:profile' order.deliever.id %}" style="width: 33%;">
-              View Deliver
+            <a class="btn btn-success" href="{% url 'deliver:order_complete' order.id %}" style="width: 33%;">
+              Complete
             </a>
           </div>
         </div>
