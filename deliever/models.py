@@ -18,7 +18,7 @@ class Deliever(models.Model):
   work_time = models.CharField(max_length=50, null=True, default='no limit')
   activity = models.BooleanField(default=True)
   category = models.ForeignKey(Category, on_delete=models.PROTECT)
-  price = models.IntegerField(null=True, blank=True, default=0)
+  wallet = models.IntegerField(null=True, blank=True, default=0)
 
   def __str__(self) -> str:
     return self.name

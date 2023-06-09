@@ -8,5 +8,5 @@ class CategoryModelAdmin(admin.ModelAdmin):
 
 @admin.register(Deliever)
 class DeliverModelAdmin(admin.ModelAdmin):
-  list_display = ("id", "name", "category", "work_time", "price", "activity")
+  list_display = ("id", "name", "category", "work_time", "wallet", "activity")
   ordering = ('id',)
